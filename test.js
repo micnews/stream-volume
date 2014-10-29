@@ -6,25 +6,26 @@ var Writable = require('stream').Writable;
 test('simple', function(t){
   t.plan(1);
 
-  var src = Readable();
-  var i = 0;
-  src._read = function(){
-    this.push({
-      0: 'foo',
-      1: 'bar',
-      2: 'baz',
-      3: null
-    }[i++]);
-  };
+  emits(['foo', 'bar', 'baz'])
+  .pipe(Volume(function(vol){
+    t.equal(vol, 9);
+  }))
+  .pipe(drainAll());
+});
 
+function drainAll(){
   var dest = Writable();
   dest._write = function(chunk, enc, cb){
     cb();
   };
+  return dest;
+}
 
-  src
-  .pipe(Volume(function(vol){
-    t.equal(vol, 9);
-  }))
-  .pipe(dest);
-});
+function emits(arr){
+  var src = Readable();
+  var i = 0;
+  src._read = function(){
+    this.push(arr[i++] || null);
+  };
+  return src;
+}
