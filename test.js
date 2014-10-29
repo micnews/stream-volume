@@ -13,6 +13,16 @@ test('simple', function(t){
   .pipe(drainAll());
 });
 
+test('unicode', function(t){
+  t.plan(1);
+
+  emits(['foo', 'bar', '\u00bd'])
+  .pipe(Volume(function(vol){
+    t.equal(vol, 8);
+  }))
+  .pipe(drainAll());
+});
+
 function drainAll(){
   var dest = Writable();
   dest._write = function(chunk, enc, cb){
