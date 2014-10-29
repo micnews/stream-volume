@@ -15,6 +15,12 @@ src
 .pipe(dest);
 ```
 
+## Installation
+
+```bash
+$ npm install stream-volume
+```
+
 ## API
 
 ### Volume(cb)
