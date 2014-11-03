@@ -3,6 +3,8 @@
 
   Measure the total volume of data a stream emits.
 
+  [![build status](https://secure.travis-ci.org/micnews/stream-volume.svg)](http://travis-ci.org/micnews/stream-volume)
+
 ## Example
 
 ```js
