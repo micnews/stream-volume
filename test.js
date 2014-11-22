@@ -4,23 +4,21 @@ var Readable = require('stream').Readable;
 var Writable = require('stream').Writable;
 
 test('simple', function(t){
-  t.plan(1);
-
   emits(['foo', 'bar', 'baz'])
   .pipe(Volume(function(vol){
     t.equal(vol, 9);
   }))
-  .pipe(drainAll());
+  .pipe(drainAll())
+  .on('finish', t.end.bind(t));
 });
 
 test('unicode', function(t){
-  t.plan(1);
-
   emits(['foo', 'bar', '\u00bd'])
   .pipe(Volume(function(vol){
     t.equal(vol, 8);
   }))
-  .pipe(drainAll());
+  .pipe(drainAll())
+  .on('finish', t.end.bind(t));
 });
 
 function drainAll(){

@@ -17,7 +17,8 @@ Volume.prototype._transform = function(chunk, enc, cb){
   cb();
 };
 
-Volume.prototype._flush = function(){
+Volume.prototype._flush = function(cb){
   this._fn(this._volume);
+  cb();
 };
 
