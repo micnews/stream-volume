@@ -1,6 +1,6 @@
 {
   "name": "stream-volume",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "repository": "micnews/stream-volume",
   "description": "Measure the total volume of data a stream emits",
   "license": "MIT",
